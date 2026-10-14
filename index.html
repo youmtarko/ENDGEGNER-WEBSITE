@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ENDGEGNER – Halloween Edition">
+<title>ENDGEGNER | Halloween Edition</title>
+<style>
+:root{
+  --bg:#050505; --panel:rgba(14,10,7,.72); --orange:#ff7200; --orange2:#ff9a2f;
+  --white:#f5f5f5; --muted:#a9a3a0; --line:rgba(255,114,0,.22);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 75% 12%,rgba(255,114,0,.13),transparent 28%),
+    radial-gradient(circle at 15% 55%,rgba(255,90,0,.07),transparent 30%),
+    var(--bg);
+  color:var(--white); overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.08;
+  background-image:radial-gradient(#fff 1px,transparent 1px);background-size:4px 4px;
+  mix-blend-mode:screen;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1180px,calc(100% - 40px));margin:auto}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:72px;
+  display:flex;align-items:center;border-bottom:1px solid rgba(255,114,0,.13);
+  background:rgba(4,4,4,.72);backdrop-filter:blur(18px);
+}
+.nav{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.8px}
+.logoMark{
+  width:38px;height:38px;display:grid;place-items:center;border-radius:10px;
+  color:#fff;font-weight:1000;font-size:24px;font-style:italic;
+  background:linear-gradient(145deg,#ffad43,#ff5a00 55%,#321000);
+  box-shadow:0 0 24px rgba(255,102,0,.35),inset 0 1px 0 rgba(255,255,255,.5);
+  transform:skew(-8deg);
+}
+.brand span{font-size:17px}
+.links{display:flex;gap:28px;color:#aaa;font-size:13px}
+.links a{transition:.25s}.links a:hover{color:#fff}
+.discord{
+  display:inline-flex;align-items:center;gap:9px;padding:11px 17px;border:1px solid var(--orange);
+  border-radius:999px;background:rgba(255,114,0,.08);color:#fff;font-weight:750;font-size:13px;
+  box-shadow:0 0 25px rgba(255,114,0,.10);transition:.25s
+}
+.discord:hover{transform:translateY(-2px);background:var(--orange);box-shadow:0 0 35px rgba(255,114,0,.35)}
+.hero{min-height:780px;padding-top:72px;display:grid;align-items:center;position:relative}
+.hero:after{
+  content:"";position:absolute;right:-12%;top:8%;width:58vw;height:58vw;max-width:780px;max-height:780px;
+  background:radial-gradient(circle,rgba(255,114,0,.18),transparent 62%);
+  filter:blur(15px);pointer-events:none
+}
+.heroGrid{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}
+.eyebrow{color:var(--orange2);letter-spacing:4px;font-size:11px;font-weight:800;margin-bottom:18px}
+h1{font-size:clamp(55px,8vw,105px);line-height:.88;letter-spacing:-5px;font-weight:1000;font-style:italic}
+h1 span{color:var(--orange);text-shadow:0 0 35px rgba(255,114,0,.25)}
+.hero p{max-width:570px;margin:26px 0;color:#bbb;font-size:16px;line-height:1.7}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.primary,.secondary{
+  padding:14px 20px;border-radius:12px;font-size:14px;font-weight:800;transition:.25s
+}
+.primary{background:var(--orange);box-shadow:0 10px 35px rgba(255,114,0,.22)}
+.primary:hover{transform:translateY(-3px);box-shadow:0 14px 45px rgba(255,114,0,.36)}
+.secondary{border:1px solid #333;background:#0c0c0c}.secondary:hover{border-color:var(--orange);transform:translateY(-3px)}
+.stats{display:flex;gap:24px;margin-top:30px;color:#aaa;font-size:12px}.stats b{color:#fff;margin-right:6px}
+.visual{height:500px;display:grid;place-items:center;position:relative}
+.ring{width:390px;height:390px;border-radius:50%;border:1px solid rgba(255,114,0,.4);box-shadow:0 0 100px rgba(255,114,0,.13);position:relative;animation:float 6s ease-in-out infinite}
+.ring:before,.ring:after{content:"";position:absolute;border-radius:50%;inset:28px;border:1px dashed rgba(255,154,47,.28);animation:spin 22s linear infinite}
+.ring:after{inset:65px;border-style:solid;border-color:rgba(255,114,0,.18);animation-direction:reverse;animation-duration:15s}
+.bigE{
+  position:absolute;inset:0;display:grid;place-items:center;font-size:230px;font-weight:1000;font-style:italic;
+  color:#111;text-shadow:-3px -3px 0 #ffb45b,3px 3px 0 #8d2f00,0 0 45px rgba(255,114,0,.65);
+  transform:skew(-8deg)
+}
+.particle{position:absolute;width:3px;height:3px;border-radius:50%;background:#ff9a2f;box-shadow:0 0 12px #ff7200;animation:drift 5s ease-in-out infinite}
+.p1{left:8%;top:20%}.p2{right:8%;top:30%;animation-delay:1s}.p3{left:18%;bottom:15%;animation-delay:2s}.p4{right:18%;bottom:22%;animation-delay:3s}
+section{padding:105px 0;border-top:1px solid rgba(255,255,255,.05)}
+.sectionTop{display:flex;justify-content:space-between;align-items:end;margin-bottom:35px}
+.kicker{color:var(--orange);font-size:11px;letter-spacing:3px;font-weight:900}.sectionTop h2{font-size:40px;margin-top:8px;letter-spacing:-1.5px}
+.sectionTop p{color:#888;max-width:450px;line-height:1.6}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.card{
+  min-height:230px;padding:25px;border:1px solid var(--line);border-radius:17px;
+  background:linear-gradient(145deg,rgba(255,114,0,.055),rgba(255,255,255,.015));
+  transition:.3s;position:relative;overflow:hidden
+}
+.card:after{content:"";position:absolute;width:160px;height:160px;right:-90px;bottom:-90px;border-radius:50%;background:rgba(255,114,0,.16);filter:blur(25px)}
+.card:hover{transform:translateY(-7px);border-color:rgba(255,114,0,.7);box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.icon{font-size:28px;color:var(--orange);margin-bottom:40px}.card h3{font-size:18px}.card p{color:#888;font-size:13px;line-height:1.6;margin-top:9px}
+.about{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+.aboutVisual{
+  height:330px;border:1px solid var(--line);border-radius:20px;position:relative;overflow:hidden;
+  background:radial-gradient(circle at 50% 50%,rgba(255,114,0,.22),transparent 28%),linear-gradient(145deg,#15100c,#050505 65%);
+}
+.moon{position:absolute;width:190px;height:190px;border-radius:50%;right:80px;top:45px;background:radial-gradient(circle at 35% 30%,#fff1d2,#ff8b24 45%,#6e2100 75%);box-shadow:0 0 80px rgba(255,114,0,.3)}
+.tree{position:absolute;bottom:-10px;left:0;width:100%;height:120px;background:linear-gradient(160deg,transparent 35%,#000 36%);clip-path:polygon(0 65%,12% 45%,20% 62%,30% 35%,42% 60%,52% 30%,63% 65%,76% 42%,88% 60%,100% 30%,100% 100%,0 100%)}
+.about h2{font-size:42px;letter-spacing:-1.5px}.about p{color:#999;line-height:1.8;margin:20px 0}
+.numbers{display:flex;gap:35px;margin-top:25px}.number b{font-size:28px;color:var(--orange)}.number small{display:block;color:#777;margin-top:3px}
+.support{
+  border:1px solid var(--line);border-radius:22px;padding:45px;
+  background:radial-gradient(circle at 15% 50%,rgba(255,114,0,.13),transparent 35%),#090807;
+  display:flex;justify-content:space-between;gap:30px;align-items:center
+}
+.support h2{font-size:34px}.support p{color:#999;margin:12px 0 22px;max-width:570px;line-height:1.7}
+footer{padding:35px 0;border-top:1px solid rgba(255,255,255,.06);color:#666;font-size:12px}
+.footer{display:flex;justify-content:space-between;align-items:center}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}.reveal.show{opacity:1;transform:none}
+@keyframes float{50%{transform:translateY(-14px) rotate(1deg)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes drift{50%{transform:translate(20px,-30px);opacity:.3}}
+@media(max-width:850px){
+  .links{display:none}.heroGrid,.about{grid-template-columns:1fr}.hero{min-height:auto;padding:140px 0 80px}.visual{height:380px}.ring{width:300px;height:300px}.bigE{font-size:175px}
+  .cards{grid-template-columns:1fr 1fr}.support{flex-direction:column;align-items:flex-start}.sectionTop{display:block}.sectionTop p{margin-top:15px}
+}
+@media(max-width:520px){.container{width:min(100% - 28px,1180px)}.cards{grid-template-columns:1fr}.stats{gap:12px;flex-wrap:wrap}h1{letter-spacing:-3px}.support{padding:28px}.about h2{font-size:34px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="container nav">
+    <a class="brand" href="#home"><div class="logoMark">E</div><span>ENDGEGNER</span></a>
+    <div class="links"><a href="#home">Home</a><a href="#leistungen">Leistungen</a><a href="#about">Über uns</a><a href="#support">Support</a></div>
+    <a class="discord" href="https://discord.gg/endgegner" target="_blank" rel="noopener">◉ Discord Support</a>
+  </div>
+</nav>
+
+<main>
+<section class="hero" id="home">
+ <div class="container heroGrid">
+  <div class="reveal">
+    <div class="eyebrow">HALLOWEEN EDITION · 2026</div>
+    <h1>END<span>GEGNER</span></h1>
+    <p>Mehr als nur eine Community – dein Ort für Designs, Editing, NVES, Soundpacks und vieles mehr. Clean, schnell und mit einem Support, der über Discord für dich da ist.</p>
+    <div class="actions">
+      <a class="primary" href="https://discord.gg/endgegner" target="_blank" rel="noopener" data-sound>◉ Discord Support</a>
+      <a class="secondary" href="#leistungen" data-sound>Unsere Leistungen →</a>
+    </div>
+    <div class="stats"><span>⚡ <b>Schnell</b></span><span>◈ <b>Zuverlässig</b></span><span>♟ <b>Community</b></span><span>◷ <b>24/7 Aktiv</b></span></div>
+  </div>
+  <div class="visual reveal">
+    <div class="ring"><div class="bigE">E</div></div>
+    <i class="particle p1"></i><i class="particle p2"></i><i class="particle p3"></i><i class="particle p4"></i>
+  </div>
+ </div>
+</section>
+
+<section id="leistungen">
+ <div class="container reveal">
+  <div class="sectionTop"><div><div class="kicker">UNSERE LEISTUNGEN</div><h2>Was wir dir bieten</h2></div><p>Alles, was du für deine Projekte brauchst – übersichtlich und ohne unnötigen Schnickschnack.</p></div>
+  <div class="cards">
+   <article class="card"><div class="icon">✦</div><h3>Designer</h3><p>Logos, Banner, Thumbnails, Headers und individuelle Designs.</p></article>
+   <article class="card"><div class="icon">▣</div><h3>Editor</h3><p>Professionelle Videos, Reels und kreative Video-Edits.</p></article>
+   <article class="card"><div class="icon">⚙</div><h3>NVES</h3><p>Individuelle NVES-Lösungen passend zu deinen Projekten.</p></article>
+   <article class="card"><div class="icon">◖</div><h3>Soundpacks</h3><p>Exklusive Soundpacks für ein starkes und eigenes Ergebnis.</p></article>
+  </div>
+ </div>
+</section>
+
+<section id="about">
+ <div class="container about reveal">
+   <div class="aboutVisual"><div class="moon"></div><div class="tree"></div></div>
+   <div>
+     <div class="kicker">ÜBER UNS</div><h2>Mehr als nur eine <span style="color:var(--orange)">Community.</span></h2>
+     <p>ENDGEGNER steht für Qualität, kreative Projekte und eine aktive Community. Egal ob du Hilfe brauchst, neue Ideen suchst oder einfach Teil von etwas Größerem sein willst – hier bist du richtig.</p>
+     <div class="numbers"><div class="number"><b>500+</b><small>Member</small></div><div class="number"><b>24/7</b><small>Aktiv</small></div><div class="number"><b>100%</b><small>Support über Discord</small></div></div>
+   </div>
+ </div>
+</section>
+
+<section id="support">
+ <div class="container reveal">
+  <div class="support">
+   <div><div class="kicker">SUPPORT</div><h2>Du brauchst Hilfe?</h2><p>Unser Support läuft ausschließlich über Discord. Dort bekommst du schnelle und direkte Hilfe – rund um die Uhr.</p><a class="primary" href="https://discord.gg/endgegner" target="_blank" rel="noopener" data-sound>◉ Discord öffnen →</a></div>
+   <div style="color:#888;line-height:2;font-size:13px">⚡ Schnelle Hilfe<br>♙ Persönlicher Support<br>◷ 24/7 erreichbar</div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer><div class="container footer"><div>© 2026 ENDGEGNER. Alle Rechte vorbehalten.</div><div>Halloween Edition · Gemeinsam. Stärker.</div></div></footer>
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+reveals.forEach(e=>io.observe(e));
+
+let audioCtx;
+function clickSound(){
+  try{
+    audioCtx ||= new (window.AudioContext||window.webkitAudioContext)();
+    const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+    o.type='sine'; o.frequency.setValueAtTime(520,audioCtx.currentTime);
+    o.frequency.exponentialRampToValueAtTime(760,audioCtx.currentTime+.09);
+    g.gain.setValueAtTime(.035,audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.14);
+    o.connect(g).connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+.14);
+  }catch(e){}
+}
+document.querySelectorAll('[data-sound]').forEach(x=>x.addEventListener('click',clickSound));
+</script>
+</body>
+</html>
